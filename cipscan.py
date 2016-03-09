@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-
-
 """
 File: cipscan.py
 Desc: Common Industrial Protocol Scanner UDP
@@ -47,20 +45,18 @@ class CipScan(Process):
                 s.close()
                 break			
             try:			
-			    s.send(packet)
-            
-			    print('Sent'+' '+packet)
+                s.send(packet)
+                print('Sent'+' '+packet)
             except socket.error:
                 msg="Failed to Send\n"
                 print(msg)
                 s.close()
                 break
             try:			
-		       recv=s.recv(1024)
-           
-		       print('Received'+' '+recv+"\n")
+            	recv=s.recvfrom(1024)
+		print(recv)
             except socket.error:
-                msg="Failed to Receive\n"
+            	msg="Failed to Receive\n"
                 print(msg+"\n")
                 s.close()
                 #break
@@ -74,7 +70,7 @@ def main():
 								prog='CipScan',
 								version='CIP Scan 1.0',
 								usage = "usage: %prog [options] IPRange")
-    p.add_option('--port', '-p', type='int', dest="port", default=44818, help='CIP port DEFAULT:44814')
+    p.add_option('--port', '-p', type='int', dest="port", default=44818, help='CIP port DEFAULT:44818')
     p.add_option('--timeout', '-t', type='int', dest="timeout", default=500, help='socket timeout (mills) DEFAULT:500')
     options, arguments = p.parse_args()
     if len(arguments) == 1:
