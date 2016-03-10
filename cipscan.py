@@ -84,8 +84,7 @@ def main():
             p = CipScan(ip,options).start()
             q.put(p,False)
     else:
-        
-		p.print_help()
+        p.print_help()
 if __name__ == '__main__':
     try:
         main()
